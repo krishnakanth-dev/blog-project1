@@ -7,7 +7,23 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-$result = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
+$search = "";
+
+if (isset($_GET['search'])) {
+
+    $search = $_GET['search'];
+
+    $sql = "SELECT * FROM posts
+            WHERE title LIKE '%$search%'
+            OR content LIKE '%$search%'
+            ORDER BY created_at DESC";
+} else {
+
+    $sql = "SELECT * FROM posts
+            ORDER BY created_at DESC";
+}
+
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +39,20 @@ $result = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
 
     <a href="create.php">Create Post</a>
     <br><br>
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search posts">
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <br>
 
     <h2>All Posts</h2>
 
