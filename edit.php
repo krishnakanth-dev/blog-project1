@@ -40,42 +40,116 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Edit Post</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+            color: white;
+        }
+
+        .container {
+            width: 50%;
+            margin: 60px auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus {
+            box-shadow: 0 0 12px #3b82f6;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            transform: scale(1.03);
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #93c5fd;
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Edit Post</h2>
+<div class="container">
 
-<form method="POST">
+    <h2>Edit Post</h2>
 
-    Title:
-    <input
-        type="text"
-        name="title"
-        value="<?php echo $post['title']; ?>"
-        required
-    >
+    <form method="POST">
 
-    <br><br>
+        <label>Title</label>
 
-    Content:
-    <br>
+        <input
+            type="text"
+            name="title"
+            value="<?php echo $post['title']; ?>"
+            required>
 
-    <textarea
-        name="content"
-        rows="5"
-        cols="40"
-        required
-    ><?php echo $post['content']; ?></textarea>
+        <label>Content</label>
 
-    <br><br>
+        <textarea
+            name="content"
+            rows="6"
+            required><?php echo $post['content']; ?></textarea>
 
-    <button type="submit">
-        Update Post
-    </button>
+        <button type="submit">
+            Update Post
+        </button>
 
-</form>
+    </form>
+
+    <a class="back" href="index.php">
+        ← Back to Dashboard
+    </a>
+
+</div>
 
 </body>
 </html>
